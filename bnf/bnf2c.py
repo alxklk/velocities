@@ -13,24 +13,24 @@ def Camel(s):
 	names=s.split('-')
 	ready=''
 	for n in names:
-		ready+=n[0:1].upper()+n[1:];
+		ready+=n[0:1].upper()+n[1:]
 	return ready
 
 def predicate(s, s1='(c0)'):
 
-	match=re.match('^<(.*?)>$',s)
+	match=re.match(r'^<(.*?)>$',s)
 	if match:
 		return Camel(match.group(1))+s1
 
-	match=re.match('\{(.*?)\}\*',s)
+	match=re.match(r'\{(.*?)\}\*',s)
 	if match:
 		return "ZeroOrMore(c0,"+predicate(match.group(1),'')+')'
 
-	match=re.match('\{(.*?)\}\+',s)
+	match=re.match(r'\{(.*?)\}\+',s)
 	if match:
 		return "OneOrMore(c0,"+predicate(match.group(1),'')+')'
 
-	match=re.match('\{(.*?)\}\?',s)
+	match=re.match(r'\{(.*?)\}\?',s)
 	if match:
 		return "Optional(c0,"+predicate(match.group(1),'')+')'
 
@@ -60,7 +60,7 @@ def clause(s):
 		out1+='){c0=c;return true;}\n'
 
 for s in f:
-	match=re.match('<(.*?)>\s*::=\s(.*)',s)
+	match=re.match(r'<(.*?)>\s*::=\s(.*)',s)
 	if match:
 		if name:
 			out1+=('\treturn false;\n}'+'\n')
@@ -72,7 +72,7 @@ for s in f:
 		out1+="\tSParseContext c=c0;\n"
 		clause(match.group(2))
 
-	match=re.match('\s*\|\s*(.*)',s)
+	match=re.match(r'\s*\|\s*(.*)',s)
 	if match:
 		clause(match.group(1))
 
