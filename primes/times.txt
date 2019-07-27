@@ -1,0 +1,8 @@
+C/C++    - 0.12 sec
+C#       - 0.68
+Go       - 0.89
+Java     - 0.50
+JS(Node) - 0.58
+Lua      - 6.10
+Python   - 22.1
+Rust     - 0.31
