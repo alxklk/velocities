@@ -4,17 +4,22 @@ type
     float2 = object
         x* : float
         y* : float
-    
-method len(v : float2) : float {.base.} =
+
+proc `+`*(l, r : float2) : float2 {.inline.} = float2(x : l.x+r.x, y : l.y+r.y )
+proc `-`*(l, r : float2) : float2 {.inline.} = float2(x : l.x-r.x, y : l.y-r.y )
+proc `*`*(l, r : float2) : float2 {.inline.} = float2(x : l.x*r.x, y : l.y*r.y )
+proc `/`*(l, r : float2) : float2 {.inline.} = float2(x : l.x/r.x, y : l.y/r.y )
+
+proc `*`*[T](l : float2, r : T) : float2 = l * float2( x : float(r), y : float(r) ) 
+proc `*`*[T](l : T, r : float2) : float2 = float2( x : float(l), y : float(l) ) * r
+
+proc `/`*[T](l : float2, r : T) : float2 = l / float2( x : float(r), y : float(r) ) 
+
+#property len
+method len*(v : float2) : float {.base.} =
     return math.sqrt(v.x*v.x + v.y*v.y)
-
-proc `+`(l, r : float2) : float2 {.inline.} = float2(x : l.x+r.x, y : l.y+r.y )
-proc `-`(l, r : float2) : float2 {.inline.} = float2(x : l.x-r.x, y : l.y-r.y )
-proc `*`(l, r : float2) : float2 {.inline.} = float2(x : l.x*r.x, y : l.y*r.y )
-proc `/`(l, r : float2) : float2 {.inline.} = float2(x : l.x/r.x, y : l.y/r.y )
-
-proc `*`[T](l : float2, r : T) : float2 = l * float2( x : float(r), y : float(r) ) 
-proc `*`[T](l : T, r : float2) : float2 = float2( x : float(l), y : float(l) ) * r
+method `len=`*(v : var float2, l: float) {.base.} =
+    v = v / len(v)
 
 
 when isMainModule:
@@ -24,6 +29,9 @@ when isMainModule:
     echo "r=", r
     echo "len(", $l, ")=", len l
     echo "r.len()=", r.len
+#change length by property
+    r.len = 1
+    echo "r.len=1;r=", r, " r.len()=", r.len
     echo "l+r=", (l+r)
     echo "l-r=", (l-r)
     echo "l*r=", (l*r)
