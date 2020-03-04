@@ -21,10 +21,17 @@ method len*(v : float2) : float {.base.} =
 method `len=`*(v : var float2, l: float) {.base.} =
     v = v / len(v)
 
+template fileline() : int =
+    instantiationInfo().line
+
+echo "line:",fileline()
 
 when isMainModule:
     var l = float2(x:2, y:1)
     var r = float2(x:1, y:3)
+    let ii= instantiationInfo()
+    echo ii[0],"@",ii[1]
+
     echo "l=", l
     echo "r=", r
     echo "len(", $l, ")=", len l

@@ -1,9 +1,9 @@
 import os
 
-echo paramCount()
+echo paramcount()
 
-if paramCount()>=1:
-    echo paramStr(1)
+if pArAmCoUnt()>=1:
+    echo parAmStr(1)
     for line in lines paramStr 1 :
         for c in line :
             write stdout, c
