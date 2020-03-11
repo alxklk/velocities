@@ -7,8 +7,12 @@ proc HookCallback(nCode: int32, wParam: WPARAM, lParam: LPARAM): LRESULT {.stdca
         var kbdstruct: PKBDLLHOOKSTRUCT = cast[ptr KBDLLHOOKSTRUCT](lparam)
         if byte(kbdstruct.vkCode) == VK_SCROLL:
             PostMessage(GetForegroundWindow(), WM_INPUTLANGCHANGEREQUEST, 2, 0)
+            echo "SW"
             return 1 # filter this key
     return CallNextHookEx(0, nCode, wParam, lParam)
+
+echo "Switch input languages by pressing Scroll Lock"
+echo "Press ^C in console window to stop"
 
 SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC) HookCallback, 0,  0)
 PostMessage(0, 0, 0, 0) # activating process message queue (without any window)
