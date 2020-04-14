@@ -2,7 +2,6 @@
 #include <winuser.h>
 #include <stdio.h>
 
-
 void unalt()
 {
 	INPUT inp;
@@ -24,11 +23,12 @@ LRESULT CALLBACK HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		bool winPressed=(GetKeyState(VK_RWIN)&0x8000);
 		bool altPressed=(GetKeyState(VK_LMENU)&0x8000);
-		bool shftPressed=(GetKeyState(VK_RSHIFT)&0x8000);
-		bool meta=shftPressed;
+		bool rshftPressed=(GetKeyState(VK_RSHIFT)&0x8000);
+		bool lshftPressed=(GetKeyState(VK_LSHIFT)&0x8000);
+		bool meta=rshftPressed;
 
 		PKBDLLHOOKSTRUCT kbdstruct=(KBDLLHOOKSTRUCT*)lParam;
-		if(kbdstruct->vkCode==VK_PAUSE)
+		if(kbdstruct->vkCode==VK_SCROLL)
 		{
 			puts("SW");
 			PostMessage(GetForegroundWindow(), WM_INPUTLANGCHANGEREQUEST, 2, 0);
@@ -45,6 +45,34 @@ LRESULT CALLBACK HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
 				case VK_OEM_MINUS: subst=0x2014;break;
 				case '5': subst=0x00b0;break;
 				case VK_OEM_COMMA: subst=0x00ab;break;
+				case VK_OEM_6: // ] or }
+				{
+					if(lshftPressed)
+						subst=0x042a;
+					else
+						subst=0x044a;
+				}break;
+				case VK_OEM_7: // ' or "
+				{
+					if(lshftPressed)
+						subst=0x042d;
+					else
+						subst=0x044d;
+				}break;
+				case 'S':
+				{
+					if(lshftPressed)
+						subst=0x042b;
+					else
+						subst=0x044b;
+				}break;
+				case 'T':
+				{
+					if(lshftPressed)
+						subst=0x0401;
+					else
+						subst=0x0451;
+				}break;
 				case VK_OEM_PERIOD: subst=0x0bb;break;
 				default:;
 			}
