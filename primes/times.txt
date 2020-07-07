@@ -7,3 +7,4 @@ Lua      - 6.10
 Python   - 22.1 (0.88 with pypy)
 Rust     - 0.31
 Nim      - 0.15
+Zig      - 0.25
