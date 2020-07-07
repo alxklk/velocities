@@ -1,9 +1,28 @@
-type
-    ituple = tuple
-        s0: string
-        s1: string
+import os
+import sequtils
 
-var
-    x: seq[ituple] # a reference to a sequence of integers
+proc cacheDir() : string =
+    result = "c:\\tmp\\rodappcache"
 
-x = @[] # the @ turns the array into a sequence allocated on the heap
+
+proc listDownloaded*() : seq[string] =
+    result = @[]
+    when not defined(js) and not defined(emscripten):
+        for f in walkDir(cacheDir()):
+            let name = f.path.splitFile.name
+            if name.len == 40 :
+                result.add(name)
+
+proc removeUnlisted(list : seq[string]) =
+    var downloaded = listDownloaded()
+    for item in downloaded :
+        if list.contains(item) :
+            echo "delete " & item
+            removeDir(cacheDir() / string(item))
+        else:
+            echo "leave " & item
+
+
+echo "Open Array"
+
+removeUnlisted(@["tmp", "wrk"])

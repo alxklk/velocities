@@ -1,5 +1,4 @@
 import net
-import base64
 import strformat
 import openssl
 
@@ -15,7 +14,13 @@ proc SSLServerCallback(ssl: SslPtr; identity: cstring; psk: ptr cuchar;
     echo identity
     return 1
 
+proc SSLClientPSK(hint: string): tuple[identity: string, psk: string] =
+    echo "PSK func"
+    return (identity: "", psk: "")
 
+proc SSLServerPSK(hint: string): string =
+    echo "PSK func"
+    return ""
 
 proc main =
     var socket = newSocket()
@@ -23,16 +28,16 @@ proc main =
     echo "Set callbacks"
     SSL_CTX_set_psk_client_callback(sslCtx.context, SSLClientCallback)
     SSL_CTX_set_psk_server_callback(sslCtx.context, SSLServerCallback)
+    sslCtx.clientGetPskFunc = SSLClientPSK
+    sslCtx.serverGetPskFunc = SSLServerPSK
     echo "-- OK"
 
     sslCtx.wrapSocket(socket)
-    #let host="www.google.com"
     let host="nim-lang.org"
 
     echo fmt"connect to {host}"
     socket.connect(host,Port(443))
 
-    var key:string = encode("5f039b61fc42000000002a6e")
     var req = fmt"""GET / HTTP/1.1
 Host: {host}:443
 Connection: close
