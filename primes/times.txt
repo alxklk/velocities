@@ -1,10 +1,13 @@
 C/C++    - 0.12 sec
+Scinc    - 3.78
 C#       - 0.68
 Go       - 0.89
 Java     - 0.50
 JS(Node) - 0.58
 Lua      - 6.10
+LuaJit   - 0.11
 Python   - 22.1 (0.88 with pypy)
 Rust     - 0.31
 Nim      - 0.15
 Zig      - 0.25
+V        - 0.12
