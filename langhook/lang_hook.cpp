@@ -2,30 +2,18 @@
 #include <winuser.h>
 #include <stdio.h>
 
-void unalt()
-{
-	INPUT inp;
-	inp.type=INPUT_KEYBOARD;
-	inp.ki.wVk=VK_MENU;
-	inp.ki.wScan=0;
-	inp.ki.dwFlags=KEYEVENTF_KEYUP;
-	inp.ki.time=0;
-	inp.ki.dwExtraInfo=0;
-	int res=SendInput(1,&inp,sizeof(inp));
-	printf("UnAlt = %i\n", res);
-}
-
 LRESULT CALLBACK HookCallback(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	if((nCode==HC_ACTION)&&((wParam==WM_KEYDOWN)
-	//||(wParam==WM_SYSKEYDOWN)
-	))
+	bool key=(wParam==WM_KEYDOWN);
+	bool sys=(wParam==WM_SYSKEYDOWN);
+	if(key||sys)
 	{
 		bool winPressed=(GetKeyState(VK_RWIN)&0x8000);
-		bool altPressed=(GetKeyState(VK_LMENU)&0x8000);
+		bool altPressed=(GetKeyState(VK_RMENU)&0x8000);
 		bool rshftPressed=(GetKeyState(VK_RSHIFT)&0x8000);
 		bool lshftPressed=(GetKeyState(VK_LSHIFT)&0x8000);
-		bool meta=rshftPressed;
+		bool shiftPressed=lshftPressed||rshftPressed;
+		bool meta=altPressed;
 
 		PKBDLLHOOKSTRUCT kbdstruct=(KBDLLHOOKSTRUCT*)lParam;
 		if(kbdstruct->vkCode==VK_SCROLL)
