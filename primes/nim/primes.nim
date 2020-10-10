@@ -7,5 +7,5 @@ for i in 0..50000:
       comp=true
       break
 
-  if comp==false:
+  if not comp:
     echo i," -- nimple"

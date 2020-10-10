@@ -1,15 +1,15 @@
-#include <stdio.h>
+import 'dart:io';
 
-int main()
+void main()
 {
 	for(int i=1;i<50000;i++)
 	{
 		int comp=0;
 		for(int j=2;j<i;j++)
 		{
-			float f=i;
-			float rf=f/j;
-			int ri=rf;
+			double f=i+0.0;
+			double rf=f/j;
+			int ri=rf.round();
 			if(rf==ri)
 			{
 				comp=1;
@@ -18,8 +18,8 @@ int main()
 		}
 		if(comp==0)
 		{
-			printf("%i -- simple\n",i);
+			stdout.write(i);
+			print(" -- dartle");
 		}
 	}
-	return 0;
 }
