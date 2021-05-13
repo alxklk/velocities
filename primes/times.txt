@@ -1,5 +1,6 @@
-C/C++    - 0.12 sec
-Scinc    - 3.48
+Ada      - 0.22 sec
+C/C++    - 0.12 
+Scinc    - 3.35
 C#       - 0.68
 Go       - 0.89
 Java     - 0.50
