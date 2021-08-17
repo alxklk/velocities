@@ -1,0 +1,1 @@
+x86_64-w64-mingw32-g++ lang_hook.cpp -olang_hook -luser32 -O3 -s
