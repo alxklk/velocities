@@ -1,0 +1,1 @@
+g++ -framework Cocoa app.mm dockIcon.mm -o app
