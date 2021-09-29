@@ -3,6 +3,27 @@
 #import <Cocoa/Cocoa.h>
 #import "dockIcon.h"
 
+void MakeIcon()
+{
+	id app = [NSApplication sharedApplication];
+	[app dockTile].contentView=[
+			[[DockIcon alloc]initWithFrame:NSMakeRect(0,0,128,128)]
+			autorelease
+		];
+	[[app dockTile] display];
+}
+
+@interface BR : NSObject {}
+@end
+
+@implementation BR
+- (void)button:(id)sender
+{
+	printf("Button pressed\n");
+	MakeIcon();
+}
+@end
+
 int main()
 {
 	[NSAutoreleasePool new];
@@ -23,19 +44,15 @@ int main()
 	[window makeKeyAndOrderFront:nil];
 
 	id button = [[[NSButton alloc] initWithFrame:frame] autorelease];
-	[button setTarget:app];
-	[button setAction:@selector(terminate:)];
-	[button setTitle:@"Quit"];
+	BR* br=[[BR alloc]init];
+	[button setTarget:br];
+	[button setAction:@selector(button:)];
+	[button setTitle:@"Press"];
 	[[window contentView] addSubview:button];
 
 //	[app dockTile].showsApplicationBadge=true;
 //	[app dockTile].badgeLabel=@"Scinc";
 
-	[app dockTile].contentView=[
-			[[DockIcon alloc]initWithFrame:NSMakeRect(0,0,128,128)]
-			autorelease
-		];
-	[[app dockTile] display];
 	[app activateIgnoringOtherApps:YES];
 	[app setActivationPolicy:NSApplicationActivationPolicyRegular];
 	[app run];
