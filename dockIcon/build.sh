@@ -1,1 +1,1 @@
-g++ -framework Cocoa app.mm dockIcon.mm -o app
+g++ -std=c++17 -D NO_BINDS -I ../../Cumulus/src -framework Cocoa app.mm dockIcon.mm -o app
