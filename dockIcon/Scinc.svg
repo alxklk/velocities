@@ -3,11 +3,11 @@
 	width="128px" height="128px" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" version="1.1"
 	>
   <g>
-    <g transform="scale(.85)translate(-800,-70)"
+    <g transform="scale(.85)translate(-790,-70)"
 	   >
       <g
          transform="translate(165.03894,-1.6036171)"
-         style="fill:#ae5;stroke:#000001;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1">
+         style="fill:#6b7;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1">
         <path
            d="m 687.37927,102.98243 0.57244,13.11193 c 0.19746,4.52294 2.88404,6.93971 7.27894,6.66841 l 11.46628,-0.70781 c 2.26853,-0.14003 1.49865,5.32163 3.90221,4.84763 2.3979,-0.47289 -0.14997,-4.21676 0.57254,-5.24584 0.89946,-1.28113 5.50756,1.1907 5.43072,-1.64388 -0.0663,-2.44402 -5.07261,-0.80258 -5.27421,-2.2367 -0.25391,-1.80628 2.10286,-4.32413 -0.34113,-5.10334 -2.07576,-0.66181 -2.79871,5.22456 -4.55477,5.08552 l -9.57625,-0.75823 c -1.15001,-0.0911 -1.99392,-0.85673 -1.92425,-2.35703 l 0.80872,-17.415822"
             />
@@ -32,9 +32,9 @@
            />
       </g>
       <g
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#090909;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
          transform="translate(-8.4189901,2.1381562)">
         <circle
+           style="fill:#000000;stroke:#090909;stroke-width:2"
            cx="897.5072"
            cy="93.941971"
            r="2.6058779"/>
@@ -46,9 +46,9 @@
 		   />
       </g>
       <g
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#090909;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
          transform="translate(11.292138,1.7372519)">
         <circle
+           style="fill:#000000;stroke:#090909;stroke-width:2"
            r="2.6058779"
            cy="93.941971"
            cx="897.5072"
