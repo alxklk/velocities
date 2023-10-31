@@ -1,0 +1,1 @@
+g++ -std=c++17 -O3 -s -D NO_BINDS -I ../../Cumulus/src -framework Cocoa app.mm -o app
